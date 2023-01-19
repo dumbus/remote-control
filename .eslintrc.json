@@ -20,6 +20,7 @@
     "rules": { 
         "no-console": 0,
         "indent": ["warn", 4],
-        "eol-last": ["warn", "always"]
+        "eol-last": ["warn", "always"],
+        "no-case-declarations": 0
     }
 }
