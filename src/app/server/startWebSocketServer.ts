@@ -1,4 +1,4 @@
-import { WebSocketServer } from "ws";
+import { WebSocketServer, createWebSocketStream } from "ws";
 
 import { controller } from "../controller/controller";
 
@@ -10,8 +10,10 @@ const startWebSocketServer = (port: number) => {
     wss.on('connection', ws => {
         console.log(`Client connected on port: ${port}`);
 
-        ws.on('message', async (msg) => {
-            const res = await controller(msg);
+        const wsStream = createWebSocketStream(ws, { encoding: 'utf-8' });
+
+        wsStream.on('data', async (data) => {
+            const res = await controller(data);
             ws.send(res);
         });
 
