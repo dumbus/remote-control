@@ -1,5 +1,7 @@
 import { mouse, up, down, left, right } from "@nut-tree/nut-js";
 
+import { printResultMessage } from "../utils/printResultMessage";
+
 enum Mouse {
     mouse_up = 'mouse_up',
     mouse_down = 'mouse_down',
@@ -9,24 +11,44 @@ enum Mouse {
 }
 
 const mouseCommands =  {
-    async mouseUp(args: string[]) {
-        await mouse.move(up(Number(...args)));
+    async mouseUp(cmd: string, args: string[]) {
+        const delta = Number(...args);
+        await mouse.move(up(delta));
+
+        const result = `Mouse was moved up to ${delta} px`;
+        printResultMessage(cmd, args, result);
     },
 
-    async mouseDown(args: string[]) {
+    async mouseDown(cmd: string, args: string[]) {
+        const delta = Number(...args);
         await mouse.move(down(Number(...args)));
+        
+        const result = `Mouse was moved down to ${delta} px`;
+        printResultMessage(cmd, args, result);
     },
 
-    async mouseLeft(args: string[]) {
+    async mouseLeft(cmd: string, args: string[]) {
+        const delta = Number(...args);
         await mouse.move(left(Number(...args)));
+        
+        const result = `Mouse was moved left to ${delta} px`;
+        printResultMessage(cmd, args, result);
     },
 
-    async mouseRight(args: string[]) {
+    async mouseRight(cmd: string, args: string[]) {
+        const delta = Number(...args);
         await mouse.move(right(Number(...args)));
+        
+        const result = `Mouse was moved right to ${delta} px`;
+        printResultMessage(cmd, args, result);
     },
 
-    async mousePosition() {
-        return await mouse.getPosition();
+    async mousePosition(cmd: string, args: string[]) {
+        const coordinates = await mouse.getPosition();
+        const result = `Were got current mouse coordinates: ${coordinates.x}, ${coordinates.y}`;
+
+        printResultMessage(cmd, args, result);
+        return coordinates;
     }
 }
 

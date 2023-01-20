@@ -7,44 +7,41 @@ import { Screenshot, printScreenCommand } from "./printScreenCommand";
 const controller = async (msg: RawData) => {
     const [ cmd, ...args ] = msg.toString().split(' ');
 
-    console.log(`Command: ${cmd} ${args}`);
-
     switch (cmd) {
     case Mouse.mouse_up:
-        await mouseCommands.mouseUp(args);
+        await mouseCommands.mouseUp(cmd, args);
         break;
 
     case Mouse.mouse_down:
-        await mouseCommands.mouseDown(args);
+        await mouseCommands.mouseDown(cmd, args);
         break;
 
     case Mouse.mouse_left:
-        await mouseCommands.mouseLeft(args);
+        await mouseCommands.mouseLeft(cmd, args);
         break;
 
     case Mouse.mouse_right:
-        await mouseCommands.mouseRight(args);
+        await mouseCommands.mouseRight(cmd, args);
         break;
 
     case Mouse.mouse_position:
-        const position = await mouseCommands.mousePosition();
-
+        const position = await mouseCommands.mousePosition(cmd, args);
         return `${cmd} ${position.x},${position.y}`;
 
     case Draw.draw_circle:
-        await drawCommands.drawCircle(args);
+        await drawCommands.drawCircle(cmd, args);
         break;
     
     case Draw.draw_rectangle:
-        await drawCommands.drawRectangle(args);
+        await drawCommands.drawRectangle(cmd, args);
         break;
 
     case Draw.draw_square:
-        await drawCommands.drawSquare(args);
+        await drawCommands.drawSquare(cmd, args);
         break;  
 
     case Screenshot.prnt_scrn:
-        const imageData = await printScreenCommand();
+        const imageData = await printScreenCommand(cmd, args);
         return `${cmd} ${imageData}`;
     }
 

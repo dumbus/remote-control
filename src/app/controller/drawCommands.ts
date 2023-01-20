@@ -1,5 +1,7 @@
 import { mouse, straightTo, Button, Point } from "@nut-tree/nut-js";
 
+import { printResultMessage } from "../utils/printResultMessage";
+
 enum Draw {
     draw_circle = 'draw_circle',
     draw_rectangle = 'draw_rectangle',
@@ -7,7 +9,7 @@ enum Draw {
 }
 
 const drawCommands = {
-    async drawCircle(args: string[]) {
+    async drawCircle(cmd: string, args: string[]) {
         const radius = Number(...args);
         const startCoordinates = await mouse.getPosition();
         const centerCoordinates = new Point(startCoordinates.x, startCoordinates.y + radius);
@@ -25,9 +27,12 @@ const drawCommands = {
         }
       
         await mouse.releaseButton(Button.LEFT);
+
+        const result = `Was drawn circle with radius ${radius} px`;
+        printResultMessage(cmd, args, result);
     },
 
-    async drawRectangle(args: string[]) {
+    async drawRectangle(cmd: string, args: string[], shouldPrintMessage = true) {
         const [ arg1, arg2 ] = args;
         const width = Number(arg1);
         const length = Number(arg2);
@@ -49,12 +54,20 @@ const drawCommands = {
             await mouse.move(straightTo(points[i]));
             await mouse.releaseButton(Button.LEFT);
         }
+
+        if (shouldPrintMessage) {
+            const result = `Was drawn rectangle with width: ${width} px, length: ${length} px`;
+        printResultMessage(cmd, args, result);
+        }
     },
 
-    async drawSquare(args: string[]) {
+    async drawSquare(cmd: string, args: string[]) {
         const [ side ] = args;
 
-        await this.drawRectangle([side, side]);
+        await this.drawRectangle(cmd, [side, side], false);
+
+        const result = `Was drawn square with width: ${side} px, length: ${side} px`;
+        printResultMessage(cmd, args, result);
     },
 };
 
