@@ -26,8 +26,6 @@ const mouseController =  {
     },
 
     async mousePosition() {
-        // const { x, y } = 
-    
         return await mouse.getPosition();
     }
 }
