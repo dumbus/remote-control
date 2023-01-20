@@ -2,6 +2,7 @@ import { RawData } from "ws";
 
 import { Mouse, mouseCommands } from "./mouseCommands";
 import { Draw, drawCommands } from "./drawCommands";
+import { Screenshot, printScreenCommand } from "./printScreenCommand";
 
 const controller = async (msg: RawData) => {
     const [ cmd, ...args ] = msg.toString().split(' ');
@@ -41,6 +42,10 @@ const controller = async (msg: RawData) => {
     case Draw.draw_square:
         await drawCommands.drawSquare(args);
         break;  
+
+    case Screenshot.prnt_scrn:
+        const imageData = await printScreenCommand();
+        return `${cmd} ${imageData}`;
     }
 
     return cmd;
