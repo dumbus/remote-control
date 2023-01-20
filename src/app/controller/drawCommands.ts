@@ -57,7 +57,7 @@ const drawCommands = {
 
         if (shouldPrintMessage) {
             const result = `Was drawn rectangle with width: ${width} px, length: ${length} px`;
-        printResultMessage(cmd, args, result);
+            printResultMessage(cmd, args, result);
         }
     },
 
