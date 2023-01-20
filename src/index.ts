@@ -10,3 +10,8 @@ const websocketPort = +process.env.WEBSOCKET_PORT;
 
 startHttpServer(httpPort);
 startWebSocketServer(websocketPort);
+
+process.on('SIGINT', () => {
+    console.log('\nServer was stopped. All connections were terminated.');
+    process.exit();
+});
