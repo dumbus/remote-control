@@ -1,4 +1,4 @@
-import { readFile, unlink } from "node:fs/promises";
+import Jimp from 'jimp/es';
 import { mouse, screen, Region } from "@nut-tree/nut-js";
 
 enum Screenshot {
@@ -22,9 +22,10 @@ const printScreenCommand = async () => {
             region.top = sh - region.height;
         }
 
-        const filename = await screen.captureRegion('screenshot.png', region);
-        const imageData = await readFile(filename, 'base64');
-        await unlink(filename);
+        const imageObject = await screen.grabRegion(region);
+        const jimpObject = new Jimp(imageObject);
+        const pngBuffer = await jimpObject.getBufferAsync(Jimp.MIME_PNG);
+        const imageData = pngBuffer.toString('base64');
 
         return imageData;
     } catch {
