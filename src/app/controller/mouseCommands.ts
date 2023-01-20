@@ -8,7 +8,7 @@ enum Mouse {
     mouse_position = 'mouse_position'
 }
 
-const mouseController =  {
+const mouseCommands =  {
     async mouseUp(args: string[]) {
         await mouse.move(up(Number(...args)));
     },
@@ -30,4 +30,4 @@ const mouseController =  {
     }
 }
 
-export { Mouse, mouseController };
+export { Mouse, mouseCommands };

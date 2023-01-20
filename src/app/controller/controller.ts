@@ -1,6 +1,6 @@
 import { RawData } from "ws";
 
-import { Mouse, mouseController } from "./mouseCommands";
+import { Mouse, mouseCommands } from "./mouseCommands";
 import { Draw, drawCommands } from "./drawCommands";
 
 const controller = async (msg: RawData) => {
@@ -10,23 +10,23 @@ const controller = async (msg: RawData) => {
 
     switch (cmd) {
     case Mouse.mouse_up:
-        await mouseController.mouseUp(args);
+        await mouseCommands.mouseUp(args);
         break;
 
     case Mouse.mouse_down:
-        await mouseController.mouseDown(args);
+        await mouseCommands.mouseDown(args);
         break;
 
     case Mouse.mouse_left:
-        await mouseController.mouseLeft(args);
+        await mouseCommands.mouseLeft(args);
         break;
 
     case Mouse.mouse_right:
-        await mouseController.mouseRight(args);
+        await mouseCommands.mouseRight(args);
         break;
 
     case Mouse.mouse_position:
-        const position = await mouseController.mousePosition();
+        const position = await mouseCommands.mousePosition();
 
         return `${cmd} ${position.x},${position.y}`;
 
