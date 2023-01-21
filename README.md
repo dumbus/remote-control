@@ -1,31 +1,55 @@
-# RSSchool NodeJS websocket task template
-> Static http server and base task packages. 
-> By default WebSocket client tries to connect to the 8080 port.
+# Remote control
 
-## Installation
-1. Clone/download repo
-2. `npm install`
+Assignment: https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/remote-control/assignment.md
 
-## Usage
-**Development**
+## How to download and install application:
 
-`npm run start:dev`
+### 1. Clone repository:
+```
+git clone https://github.com/dumbus/remote-control.git
+```
+### 2. Change active directory:
+```
+cd remote-control
+```
+### 3. Change repository branch:
+```
+git checkout remote-control
+```
+### 4. Install dependencies:
+```
+npm install
+```
 
+## How to run application:
+
+Run the application in a development mode:
+```
+npm run start:dev
+```
 * App served @ `http://localhost:8181` with nodemon
 
-**Production**
-
-`npm run start`
-
+Run the application in a production mode:
+```
+npm run start
+```
 * App served @ `http://localhost:8181` without nodemon
 
----
+## Important notes:
+When you start an application, you will see messages:
+```
+Start http server on localhost:8181
+```
+```
+Start websocket server on localhost:8080
+```
+> Connect to **localhost:8181** to see the Remote control task page
 
-**All commands**
-
-Command | Description
---- | ---
-`npm run start:dev` | App served @ `http://localhost:8181` with nodemon
-`npm run start` | App served @ `http://localhost:8181` without nodemon
-
-**Note**: replace `npm` with `yarn` in `package.json` if you use yarn.
+After you connect to **localhost:8181**, you will see a message in console:
+```
+Client connected on port: ${WEBSOCKET_PORT}
+```
+After you disconnect from Remote control task page, you will see a message in console:
+```
+Websocket connection was closed
+```
