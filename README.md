@@ -35,6 +35,8 @@ Run the application in a production mode:
 npm run start
 ```
 
+After you started an application, open `http://localhost:8181` to see Remote control task page
+
 ## Important notes:
 When you start an application, you will see messages:
 ```
