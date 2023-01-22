@@ -17,6 +17,10 @@ const startWebSocketServer = (port: number) => {
             ws.send(res);
         });
 
+        process.on('SIGINT', () => {
+            ws.close();
+        });
+
         ws.on('close', () => {
             console.log('Websocket connection was closed');
         });
