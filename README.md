@@ -1,6 +1,9 @@
 # Remote control
 
-Assignment: https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/remote-control/assignment.md
+An application that implements `remote control backend` using `nutjs.dev` library and `Websocket` protocol.
+
+[Assignment](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/remote-control/assignment.md)  
+[Scoring](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/remote-control/score.md)
 
 ## How to download and install application:
 
@@ -12,11 +15,7 @@ git clone https://github.com/dumbus/remote-control.git
 ```
 cd remote-control
 ```
-### 3. Change repository branch:
-```
-git checkout remote-control
-```
-### 4. Install dependencies:
+### 3. Install dependencies:
 ```
 npm install
 ```
